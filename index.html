@@ -305,6 +305,66 @@
         padding: 14px 12px;
       }
     }
+  
+    .image-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .image-card {
+      overflow: hidden;
+    }
+
+    .image-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .image-card .caption {
+      padding: 14px 16px 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .definition-image {
+      margin: 0 0 18px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .definition-image img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .definition-image figcaption {
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .source-note {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 920px) {
+      .image-strip {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -328,6 +388,22 @@
           <span>DXもBIMも、そこが誤解の出発点です。</span>
         </div>
       </div>
+
+      <div class="image-strip">
+        <article class="card image-card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80" alt="データダッシュボードを表示するモニター" loading="lazy">
+          <div class="caption">DXの文脈では、見えている画面そのものではなく、そこから意思決定や業務の構造がどう変わるかが本質です。</div>
+        </article>
+        <article class="card image-card">
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80" alt="ノートPCで共同作業するビジネスチーム" loading="lazy">
+          <div class="caption">デジタルツール導入は入口です。組織の動き方まで変わって、はじめて変革の話になります。</div>
+        </article>
+        <article class="card image-card">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="オフィスで話し合う複数人のチーム" loading="lazy">
+          <div class="caption">DXもBIMも、単独のソフトより、関係者の連携や運用設計まで含めて考える必要があります。</div>
+        </article>
+      </div>
+      <div class="source-note">画像はUnsplashのフリー写真リンクを利用しています。</div>
     </div>
   </header>
 
@@ -340,6 +416,10 @@
         </div>
         <div class="grid-2">
           <article class="card definition">
+            <figure class="definition-image">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80" alt="分析用ダッシュボードとグラフが映るPC画面" loading="lazy">
+              <figcaption>画面は手段。DXは、その先の変化を指します。</figcaption>
+            </figure>
             <span class="tag">Definition</span>
             <h3>DXとは</h3>
             <p>
@@ -348,6 +428,10 @@
             <div class="point-box">DXは手段ではなく、変革が起きた結果を表す評価語です。</div>
           </article>
           <article class="card definition">
+            <figure class="definition-image">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" alt="地球上に広がるデジタルネットワークのイメージ" loading="lazy">
+              <figcaption>導入されるのは、技術や仕組みや基盤です。</figcaption>
+            </figure>
             <span class="tag">What is actually introduced</span>
             <h3>導入されるもの</h3>
             <p>
@@ -367,6 +451,10 @@
         </div>
         <div class="grid-2">
           <article class="card definition">
+            <figure class="definition-image">
+              <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80" alt="建築物の外観と幾何学的な線が重なる都市建築イメージ" loading="lazy">
+              <figcaption>BIMは、形だけでなく情報をつないで扱う枠組みです。</figcaption>
+            </figure>
             <span class="tag">Definition</span>
             <h3>BIMとは</h3>
             <p>
@@ -375,6 +463,10 @@
             <div class="point-box">BIMはソフトの名前ではなく、情報の持ち方と連携の仕組みです。</div>
           </article>
           <article class="card definition">
+            <figure class="definition-image">
+              <img src="https://images.pexels.com/photos/15764116/pexels-photo-15764116.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="モニターで建築図面を確認する設計者" loading="lazy">
+              <figcaption>現場で触れるのは、ツール、モデル、データ、運用ルールです。</figcaption>
+            </figure>
             <span class="tag">What is actually used</span>
             <h3>実際に使うもの</h3>
             <p>
