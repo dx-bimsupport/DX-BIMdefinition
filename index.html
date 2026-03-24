@@ -1,1 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DXとBIMの言葉の定義</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.12);
+      --text: #eef2ff;
+      --muted: #b8c0e0;
+      --line: rgba(255,255,255,0.12);
+      --accent: #7cc7ff;
+      --accent-2: #9b8cff;
+      --ok: #8fe3b0;
+      --warn: #ffd27a;
+      --shadow: 0 20px 60px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1120px;
+    }
 
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Noto Sans JP", "Hiragino Sans", "Yu Gothic UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(124,199,255,0.18), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(155,140,255,0.16), transparent 24%),
+        linear-gradient(180deg, #0b1020 0%, #121933 48%, #0f1529 100%);
+      line-height: 1.75;
+      letter-spacing: 0.02em;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 88px 0 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 45%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin: 20px 0 18px;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      max-width: 880px;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--muted);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: end;
+      margin-top: 34px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-card {
+      padding: 26px;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .quote {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: center;
+      min-height: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+    }
+
+    .quote strong {
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+
+    .quote span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    section {
+      padding: 22px 0 28px;
+    }
+
+    .section-head {
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .definition {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .definition::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,199,255,0.16), transparent 68%);
+      pointer-events: none;
+    }
+
+    .definition .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .definition h3 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+    }
+
+    .definition p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .point-box {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-weight: 700;
+    }
+
+    .comparison {
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    th, td {
+      padding: 18px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: rgba(255,255,255,0.08);
+      font-size: 0.95rem;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .badgood {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .list-card {
+      padding: 24px;
+    }
+
+    .list-card h3 {
+      margin: 0 0 16px;
+      font-size: 1.15rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    li {
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .ng h3 { color: var(--warn); }
+    .ok h3 { color: var(--ok); }
+
+    .summary {
+      padding: 30px;
+      background: linear-gradient(135deg, rgba(124,199,255,0.12), rgba(155,140,255,0.14));
+    }
+
+    .summary h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+    }
+
+    .summary p {
+      margin: 0;
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+
+    footer {
+      padding: 22px 0 50px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .grid-2,
+      .badgood {
+        grid-template-columns: 1fr;
+      }
+
+      th, td {
+        padding: 14px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">DXとBIMの定義を整理する</div>
+      <h1>DXは導入するものではない。<br>BIMは使うものではない。</h1>
+      <p class="lead">
+        DXとBIMは、どちらも日常会話では便利な言葉として使われがちです。ですが本来は、単なるツール名でも作業名でもありません。ここでは、言葉の意味を混同せずに、何を導入し、何が変わり、何を成果として評価するのかを1ページで明快に整理します。
+      </p>
+
+      <div class="hero-grid">
+        <div class="card hero-card">
+          <h2>このページの結論</h2>
+          <p>
+            導入するのはデジタルツールや業務プロセスです。活用するのはモデルやデータです。そして、経営や業務の構造が変わった結果を、DXやBIM活用の成果として評価します。言葉を正しく置くと、議論の焦点が一気に鮮明になります。
+          </p>
+        </div>
+        <div class="card quote">
+          <strong>結果を表す言葉を、手段の名前として使うと、議論はぼやける。</strong>
+          <span>DXもBIMも、そこが誤解の出発点です。</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>1. DXの定義</h2>
+          <p>DXは、デジタルツールそのものではなく、デジタル活用によって起きた変革を指します。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card definition">
+            <span class="tag">Definition</span>
+            <h3>DXとは</h3>
+            <p>
+              DXは、デジタル技術を活用した結果として、業務のあり方、意思決定の仕組み、顧客への価値提供、さらには経営の構造まで変化した状態を指す言葉です。
+            </p>
+            <div class="point-box">DXは手段ではなく、変革が起きた結果を表す評価語です。</div>
+          </article>
+          <article class="card definition">
+            <span class="tag">What is actually introduced</span>
+            <h3>導入されるもの</h3>
+            <p>
+              実際に導入されるのは、SaaS、ERP、AI、ワークフロー、データ基盤などの具体的な技術や仕組みです。DXそのものを導入することはできません。
+            </p>
+            <div class="point-box">「DX導入」ではなく、「デジタル基盤の導入」「業務変革施策の実行」が正確です。</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>2. BIMの定義</h2>
+          <p>BIMは、3Dソフトの別名ではなく、情報を扱う枠組みと業務の進め方です。</p>
+        </div>
+        <div class="grid-2">
+          <article class="card definition">
+            <span class="tag">Definition</span>
+            <h3>BIMとは</h3>
+            <p>
+              BIMは、建築物に関する形状・属性・関係性などの情報を、モデルベースで一元的に扱い、設計・施工・維持管理へ連携するための考え方と業務の枠組みです。
+            </p>
+            <div class="point-box">BIMはソフトの名前ではなく、情報の持ち方と連携の仕組みです。</div>
+          </article>
+          <article class="card definition">
+            <span class="tag">What is actually used</span>
+            <h3>実際に使うもの</h3>
+            <p>
+              実務で使うのは、Revitなどのツール、3Dモデル、属性データ、共通環境、運用ルールです。BIMそのものを道具のように使うわけではありません。
+            </p>
+            <div class="point-box">「BIMを使う」より、「BIMで業務を進める」「BIMモデルを活用する」が正確です。</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>3. DXとBIMの共通点</h2>
+          <p>どちらも概念や枠組みであり、単なるツール名として扱うと意味が崩れます。</p>
+        </div>
+        <div class="comparison">
+          <table>
+            <thead>
+              <tr>
+                <th>観点</th>
+                <th>DX</th>
+                <th>BIM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>本質</td>
+                <td>デジタル活用の結果として起きる経営・事業・業務の変革</td>
+                <td>建築情報をモデルベースで扱い連携するための枠組み</td>
+              </tr>
+              <tr>
+                <td>誤解されやすい姿</td>
+                <td>ITツール導入そのもの</td>
+                <td>3D作図ソフトそのもの</td>
+              </tr>
+              <tr>
+                <td>実際に導入・使用するもの</td>
+                <td>システム、AI、データ基盤、業務プロセス</td>
+                <td>モデリングツール、BIMモデル、属性情報、運用ルール</td>
+              </tr>
+              <tr>
+                <td>成果として現れるもの</td>
+                <td>意思決定の高度化、収益構造の改善、顧客価値の変化</td>
+                <td>情報整合、手戻り削減、連携精度向上、維持管理への展開</td>
+              </tr>
+              <tr>
+                <td>正確な言い方</td>
+                <td>デジタル基盤を導入する、業務変革を進める、結果としてDXが実現した</td>
+                <td>BIM環境を整備する、BIMモデルを活用する、BIMプロセスで進める</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>4. よくある言い方の整理</h2>
+          <p>日常的に使われる表現を、意味が伝わる言葉に置き換えるとこうなります。</p>
+        </div>
+        <div class="badgood">
+          <div class="card list-card ng">
+            <h3>曖昧になりやすい表現</h3>
+            <ul>
+              <li>DXを導入する</li>
+              <li>DX化する</li>
+              <li>BIMを使う</li>
+              <li>BIMを入れる</li>
+              <li>3DにしたからBIM</li>
+            </ul>
+          </div>
+          <div class="card list-card ok">
+            <h3>意味が明確な表現</h3>
+            <ul>
+              <li>デジタル基盤を導入する</li>
+              <li>業務プロセスを再設計する</li>
+              <li>BIMモデルを活用する</li>
+              <li>BIM運用ルールを整備する</li>
+              <li>情報連携の仕組みを構築する</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="card summary">
+          <h2>まとめ</h2>
+          <p>
+            DXは導入対象ではなく、デジタル活用の結果として起きた変革を表す言葉です。BIMは単体の道具ではなく、情報の持ち方と業務連携の枠組みです。どちらも、言葉を手段の名前として使うと本質が見えなくなります。何を導入し、何を運用し、何が変わったのか。この順番で語ることが、最も誤解の少ない説明になります。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      言葉の定義を正すことは、単なる言い換えではなく、議論の対象を正しく置き直すことです。
+    </div>
+  </footer>
+</body>
+</html>
